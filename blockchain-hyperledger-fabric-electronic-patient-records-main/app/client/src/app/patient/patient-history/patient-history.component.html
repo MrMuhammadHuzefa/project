@@ -1,4 +1,4 @@
-<app-toolbar text="Patient History">
+<!-- <app-toolbar text="Patient History">
   <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
 </app-toolbar>
 <br><br><br>
@@ -14,13 +14,13 @@
           </th>
         </tr>
       </thead>
-      <tbody>
-        <!--<tr *ngFor="let singleRecord of [patientRecordHistory]">
+      <tbody> -->
+<!--<tr *ngFor="let singleRecord of [patientRecordHistory]">
           <td *ngFor="let columnName of headerNames">
             {{singleRecord[columnName.keyName]}}
           </td>
         </tr>-->
-        <tr *ngFor="let singleRecord of patientRecordHistoryObs$ | async">
+<!-- <tr *ngFor="let singleRecord of patientRecordHistoryObs$ | async">
           <td>{{convertToDate(singleRecord.Timestamp)}}</td>
           <td>{{singleRecord.changedBy}}</td>
           <td>{{singleRecord.firstName}}</td>
@@ -41,5 +41,67 @@
       </tbody>
     </table>
     <span>Total count: {{(patientRecordHistoryObs$ | async)?.length}}</span>
+  </div>
+</div> -->
+
+
+<app-toolbar text="Patient History">
+  <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
+</app-toolbar>
+
+<div class="sidebar-layout-bottom-row p-3 container-fluid">
+  <div class="row mb-3">
+    <div class="col-12">
+      <p class="mb-0">History of a patient.</p>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th *ngFor="let column of headerNames" scope="col">
+            {{column.displayName}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let singleRecord of patientRecordHistoryObs$ | async">
+          <td attr.data-label="{{headerNames[0].displayName}}">{{convertToDate(singleRecord.Timestamp)}}</td>
+          <td attr.data-label="{{headerNames[1].displayName}}">{{singleRecord.changedBy}}</td>
+          <td attr.data-label="{{headerNames[2].displayName}}">{{singleRecord.firstName}}</td>
+          <td attr.data-label="{{headerNames[3].displayName}}">{{singleRecord.lastName}}</td>
+          <td attr.data-label="{{headerNames[4].displayName}}">{{singleRecord.age}}</td>
+          <td attr.data-label="{{headerNames[5].displayName}}">{{singleRecord.bloodGroup}}</td>
+
+          <ng-container *ngIf="isPatient()">
+            <td attr.data-label="{{headerNames[6].displayName}}">{{singleRecord.address}}</td>
+            <td attr.data-label="{{headerNames[7].displayName}}">{{singleRecord.phoneNumber}}</td>
+            <td attr.data-label="{{headerNames[8].displayName}}">{{singleRecord.emergPhoneNumber}}</td>
+          </ng-container>
+
+          <td attr.data-label="{{isPatient() ? headerNames[9].displayName : headerNames[6].displayName}}">
+            {{singleRecord.allergies}}
+          </td>
+          <td attr.data-label="{{isPatient() ? headerNames[10].displayName : headerNames[7].displayName}}">
+            {{singleRecord.diagnosis}}
+          </td>
+          <td attr.data-label="{{isPatient() ? headerNames[11].displayName : headerNames[8].displayName}}">
+            {{singleRecord.symptoms}}
+          </td>
+          <td attr.data-label="{{isPatient() ? headerNames[12].displayName : headerNames[9].displayName}}">
+            {{singleRecord.treatment}}
+          </td>
+          <td attr.data-label="{{isPatient() ? headerNames[13].displayName : headerNames[10].displayName}}">
+            {{singleRecord.followUp}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-12">
+        <span>Total count: {{(patientRecordHistoryObs$ | async)?.length}}</span>
+      </div>
+    </div>
   </div>
 </div>

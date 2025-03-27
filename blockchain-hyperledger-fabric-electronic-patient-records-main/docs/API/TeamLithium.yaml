@@ -13,7 +13,7 @@ info:
 #                  Host, Base Path, Schemes and Content Types                  #
 ################################################################################
 servers:
-  - url: http://localhost:3001
+  - url: https://ms29f40c-3001.inc1.devtunnels.ms
     description: Localhost
 
 ################################################################################

@@ -28,6 +28,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.authService.loggedIn()) {
+      const role = this.authService.getRole();
+      const userId = this.authService.getUsername();
+      this.router.navigate([`/${role}/${userId}`]);
+    }
   }
 
   public resetFields(): void {

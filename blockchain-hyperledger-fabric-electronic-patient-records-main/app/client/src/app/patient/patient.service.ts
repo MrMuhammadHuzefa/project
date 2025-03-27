@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PatientService {
 
-  private patientURL = 'http://localhost:3001/patients';
+  private patientURL = 'https://ms29f40c-3001.inc1.devtunnels.ms/patients';
 
   constructor(private http: HttpClient) { }
 

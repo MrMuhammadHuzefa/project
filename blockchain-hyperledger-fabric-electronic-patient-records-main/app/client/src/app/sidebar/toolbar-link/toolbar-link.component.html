@@ -1,4 +1,11 @@
-<a [queryParams]="queryParams" [routerLink]="routerLink" aria-disabled="false" class="btn-toolbar mr-1 ml-1"
+<!-- <a [queryParams]="queryParams" [routerLink]="routerLink" aria-disabled="false" class="btn-toolbar mr-1 ml-1"
    role="button">
   <i class="fa fa-{{icon}}"></i>&nbsp;{{text}}
+</a> -->
+
+
+<a class="toolbar-link" [routerLink]="routerLink" [queryParams]="queryParams" [attr.aria-label]="text"
+  [class.disabled]="disabled" [attr.aria-disabled]="disabled">
+  <i class="icon fa fa-{{icon}}" aria-hidden="true"></i>
+  <span class="text">{{text}}</span>
 </a>

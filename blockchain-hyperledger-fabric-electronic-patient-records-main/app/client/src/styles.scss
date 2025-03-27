@@ -1,6 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@ng-select/ng-select/themes/default.theme.css';
+// /* You can add global styles to this file, and also import other style files */
+// @import '~@ng-select/ng-select/themes/default.theme.css';
 
-@import '../node_modules/font-awesome/css/font-awesome.css';
+// @import '../node_modules/font-awesome/css/font-awesome.css';
 
-@import '~bootstrap/dist/css/bootstrap.css';
+// @import '~bootstrap/dist/css/bootstrap.css';
+
+
+/* Global Responsive Styles */
+:root {
+    --mobile-breakpoint: 576px;
+    --tablet-breakpoint: 768px;
+    --desktop-breakpoint: 992px;
+  }
+  
+  /* Base Styles */
+  html {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100%;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Responsive Typography */
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Import other styles */
+  @import '~@ng-select/ng-select/themes/default.theme.css';
+  @import '../node_modules/font-awesome/css/font-awesome.css';
+  @import '~bootstrap/dist/css/bootstrap.css';
+  
+  /* Responsive Utilities */
+  .hidden-mobile {
+    display: block;
+  }
+  
+  .hidden-desktop {
+    display: none;
+  }
+  
+  @media (max-width: 767px) {
+    .hidden-mobile {
+      display: none !important;
+    }
+    .hidden-desktop {
+      display: block !important;
+    }
+  }
+  
+  /* Material Overrides */
+  .mat-card {
+    margin: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 767px) {
+    .mat-card {
+      margin: 0.5rem;
+    }
+  }

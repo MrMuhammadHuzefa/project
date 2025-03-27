@@ -13,7 +13,7 @@ import { BrowserStorageFields } from '../../utils';
 })
 export class AuthService {
 
-  private serverUrl = 'http://localhost:3001';
+  private serverUrl = 'https://ms29f40c-3001.inc1.devtunnels.ms';
   private loginUrl = `${this.serverUrl}/login`;
 
   constructor(private http: HttpClient, private router: Router) { }

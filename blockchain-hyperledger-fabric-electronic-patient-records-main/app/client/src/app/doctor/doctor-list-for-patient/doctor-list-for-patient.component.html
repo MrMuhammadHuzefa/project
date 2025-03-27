@@ -1,4 +1,4 @@
-<app-toolbar text="Doctors">
+<!-- <app-toolbar text="Doctors">
   <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
 </app-toolbar>
 <br><br><br>
@@ -30,5 +30,50 @@
       </tbody>
     </table>
     <span>Total count: {{doctorRecords.length}}</span>
+  </div>
+</div> -->
+
+<app-toolbar text="Doctors">
+  <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
+</app-toolbar>
+
+<div class="sidebar-layout-bottom-row p-3 container-fluid">
+  <div class="row mb-3">
+    <div class="col-12">
+      <p class="mb-0">List of all doctors.</p>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thread-light">
+        <tr>
+          <th *ngFor="let column of headerNames" scope="col">
+            {{column.displayName}}
+          </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let singleRecord of doctorRecords">
+          <td attr.data-label="{{headerNames[0].displayName}}">{{singleRecord.doctorId}}</td>
+          <td attr.data-label="{{headerNames[1].displayName}}">{{singleRecord.firstName}}</td>
+          <td attr.data-label="{{headerNames[2].displayName}}">{{singleRecord.lastName}}</td>
+          <td attr.data-label="Actions">
+            <div class="btn-group btn-group-sm" role="group">
+              <button type="button" class="btn btn-success" (click)="grant(singleRecord.doctorId)"
+                [disabled]="isDoctorPresent(singleRecord.doctorId)">GRANT</button>
+              <button type="button" class="btn btn-danger" (click)="revoke(singleRecord.doctorId)"
+                [disabled]="!isDoctorPresent(singleRecord.doctorId)">REVOKE</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-12">
+        <span>Total count: {{doctorRecords.length}}</span>
+      </div>
+    </div>
   </div>
 </div>

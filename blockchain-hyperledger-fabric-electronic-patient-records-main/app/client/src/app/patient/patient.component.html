@@ -1,4 +1,4 @@
-<app-toolbar text="Patient {{patientID}}">
+<!-- <app-toolbar text="Patient {{patientID}}">
   <app-toolbar-link *ngIf="isPatient()" text="Edit personal details" icon="edit"
     [routerLink]="['/patient/edit/', patientID]">
   </app-toolbar-link>
@@ -82,4 +82,218 @@
       </div>
     </div>
   </div>
+</div> -->
+<!-- 
+<div *ngIf="isLoading" class="loading-indicator">
+  <div class="spinner"></div>
+  <p>Loading patient data...</p>
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+
+<app-toolbar text="Patient {{patientID}}">
+
+  <app-toolbar-link *ngIf="isPatient()" text="Edit personal details" icon="edit"
+    [routerLink]="['/patient/edit/', patientID]">
+  </app-toolbar-link>
+  <app-toolbar-link *ngIf="isDoctor()" text="Edit medical details" icon="edit"
+    [routerLink]="['/patient/edit/', patientID]">
+  </app-toolbar-link>
+  <app-toolbar-link *ngIf="isPatient()" text="View doctors" icon="user-md" routerLink="doctors/list"></app-toolbar-link>
+  <app-toolbar-link text="View history" icon="history" routerLink="history"></app-toolbar-link>
+  <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
+</app-toolbar>
+
+<div class="patient-container">
+  <div class="patient-card">
+    <h5 class="card-title">Details</h5>
+    <div *ngIf="patientRecordObs | async as record; else unauthorized" class="patient-details">
+    
+      <div class="detail-row">
+        <span class="detail-label">Patient ID</span>
+        <span class="detail-value">{{record.patientId}}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">First Name</span>
+        <span class="detail-value">{{record.firstName}}</span>
+      </div>
+   
+
+      <div *ngIf="isPatient()" class="sensitive-details">
+        <div class="detail-row">
+          <span class="detail-label">Contact number</span>
+          <span class="detail-value">{{record.phoneNumber}}</span>
+        </div>
+        
+      </div>
+    </div>
+
+    <ng-template #unauthorized>
+      <p class="unauthorized-message">You are not authorized to view patient details.</p>
+    </ng-template>
+  </div>
+</div> -->
+
+<!-- <app-toolbar text="">
+  <div style="break-before: always;">
+    <app-toolbar-link *ngIf="isPatient()" text="Edit personal details" icon="edit"
+      [routerLink]="['/patient/edit/', patientID]">
+    </app-toolbar-link>
+    <div style="margin-top: 10px;"></div>
+    <app-toolbar-link *ngIf="isDoctor()" text="Edit medical details" icon="edit"
+      [routerLink]="['/patient/edit/', patientID]">
+    </app-toolbar-link>
+    <app-toolbar-link *ngIf="isPatient()" text="View doctors" icon="user-md"
+      routerLink="doctors/list"></app-toolbar-link>
+  </div>
+
+  <div style="break-before: always;">
+    <app-toolbar-link text="View history" icon="history" routerLink="history"></app-toolbar-link>
+    <div style="margin-top: 10px;"></div>
+    <app-toolbar-link text="Refresh" icon="refresh" routerLink="refresh()"></app-toolbar-link>
+  </div>
+
+</app-toolbar>
+
+
+
+
+<div class="patient-container">
+
+  <div class="patient-header">
+    <h1>Patient {{patientID}}</h1>
+  </div>
+
+
+  <div class="detail-section">
+    <h2>Details</h2>
+    <div class="detail-list">
+      <div *ngIf="patientRecordObs | async as record" class="detail-items">
+
+        <div class="detail-group">
+          <h3 class="detail-group-title">Patient Information</h3>
+          <div class="detail-item">
+            <span class="detail-label">PATIENT ID</span>
+            <span class="detail-value">{{record.patientId}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">FIRST NAME</span>
+            <span class="detail-value">{{record.firstName}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">LAST NAME</span>
+            <span class="detail-value">{{record.lastName}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">AGE</span>
+            <span class="detail-value">{{record.age}}</span>
+          </div>
+        </div>
+
+
+        <div *ngIf="isPatient()" class="detail-group">
+          <h3 class="detail-group-title">Contact Information</h3>
+          <div class="detail-item">
+            <span class="detail-label">CONTACT NUMBER</span>
+            <span class="detail-value">{{record.phoneNumber}}</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<app-toolbar text="Patient {{patientID}}">
+  <div style="break-before: always;">
+    <app-toolbar-link *ngIf="isPatient()" text="Edit personal details" icon="edit"
+      [routerLink]="['/patient/edit/', patientID]">
+    </app-toolbar-link>
+    <div style="margin-top: 10px;"></div>
+    <app-toolbar-link *ngIf="isDoctor()" text="Edit medical details" icon="edit"
+      [routerLink]="['/patient/edit/', patientID]">
+    </app-toolbar-link>
+    <app-toolbar-link *ngIf="isPatient()" text="View doctors" icon="user-md"
+      routerLink="doctors/list"></app-toolbar-link>
+  </div>
+
+  <div style="break-before: always;">
+    <app-toolbar-link text="View history" icon="history" routerLink="history"></app-toolbar-link>
+    <div style="margin-top: 10px;"></div>
+    <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
+  </div>
+</app-toolbar>
+
+<div class="data-container">
+  <div *ngIf="loading" class="loading-state">
+    <i class="fa fa-spinner fa-spin"></i> Loading patient data...
+  </div>
+
+  <div *ngIf="patientRecordObs | async as record; else noData">
+    <div class="data-header">
+      <h1>Patient {{patientID}}</h1>
+    </div>
+
+    <div class="detail-section">
+      <h2>Details</h2>
+      <div class="detail-list">
+        <div class="detail-group">
+          <h3 class="detail-group-title">Personal Information</h3>
+          <div class="detail-item">
+            <span class="detail-label">PATIENT ID</span>
+            <span class="detail-value">{{record.patientId}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">FIRST NAME</span>
+            <span class="detail-value">{{record.firstName}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">LAST NAME</span>
+            <span class="detail-value">{{record.lastName}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">AGE</span>
+            <span class="detail-value">{{record.age}}</span>
+          </div>
+        </div>
+
+        <div *ngIf="isPatient()" class="detail-group">
+          <h3 class="detail-group-title">Contact Information</h3>
+          <div class="detail-item">
+            <span class="detail-label">CONTACT NUMBER</span>
+            <span class="detail-value">{{record.phoneNumber}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">EMERGENCY CONTACT</span>
+            <span class="detail-value">{{record.emergPhoneNumber}}</span>
+          </div>
+        </div>
+
+        <div class="detail-group">
+          <h3 class="detail-group-title">Medical Information</h3>
+          <div class="detail-item">
+            <span class="detail-label">BLOOD GROUP</span>
+            <span class="detail-value">{{record.bloodGroup}}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">ALLERGIES</span>
+            <span class="detail-value">{{record.allergies}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div *ngIf="error" class="error-state">
+      <i class="fa fa-exclamation-triangle"></i> {{error}}
+      <button class="retry-btn" (click)="refresh()">Retry</button>
+    </div>
+    <div *ngIf="!loading && !error" class="error-state">
+      You are not authorized to view patient details
+    </div>
+  </ng-template>
 </div>

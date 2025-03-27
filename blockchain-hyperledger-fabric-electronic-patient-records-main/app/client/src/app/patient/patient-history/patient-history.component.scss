@@ -1,0 +1,58 @@
+/* Responsive table styles */
+@media (max-width: 992px) {
+    .table-responsive {
+      border: 0;
+      
+      table {
+        width: 100%;
+      }
+      
+      thead {
+        display: none;
+      }
+      
+      tr {
+        display: block;
+        margin-bottom: 1.5rem;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        padding: 0.75rem;
+      }
+      
+      td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        text-align: right;
+        border-bottom: 1px solid #f1f1f1;
+        
+        &::before {
+          content: attr(data-label);
+          font-weight: bold;
+          padding-right: 1rem;
+          text-align: left;
+          flex: 1;
+        }
+        
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  /* For very small screens */
+  @media (max-width: 576px) {
+    .table-responsive td {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      padding: 0.75rem 0.5rem;
+      
+      &::before {
+        margin-bottom: 0.25rem;
+        padding-right: 0;
+      }
+    }
+  }

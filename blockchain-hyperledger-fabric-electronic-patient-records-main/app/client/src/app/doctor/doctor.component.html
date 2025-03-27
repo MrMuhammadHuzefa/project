@@ -1,4 +1,4 @@
-<app-toolbar text="Doctor {{doctorId}}">
+<!-- <app-toolbar text="Doctor {{doctorId}}">
   <app-toolbar-link text="View patients" icon="users" [routerLink]="['patients']">
   </app-toolbar-link>
   <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
@@ -38,4 +38,62 @@
       </div>
     </div>
   </div>
+</div> -->
+
+<app-toolbar text="Doctor {{doctorId}}">
+
+  <div style="break-before: always;">
+    <app-toolbar-link text="View patients" icon="users" [routerLink]="['patients']"></app-toolbar-link>
+    <div style="margin-top: 10px;"></div>
+    <app-toolbar-button text="Refresh" icon="refresh" (click)="refresh()"></app-toolbar-button>
+  </div>
+</app-toolbar>
+
+<div class="doctor-container">
+  <div *ngIf="loading" class="loading-state">
+    <i class="fa fa-spinner fa-spin"></i> Loading doctor data...
+  </div>
+
+  <div *ngIf="doctorRecordObs | async as record; else noData">
+    <div class="doctor-header">
+      <h1>Doctor {{doctorId}}</h1>
+    </div>
+
+    <div class="detail-section">
+      <h2>Details</h2>
+      <div class="detail-list">
+        <div class="detail-items">
+          <div class="detail-group">
+            <h3 class="detail-group-title">Professional Information</h3>
+            <div class="detail-item">
+              <span class="detail-label">DOCTOR ID</span>
+              <span class="detail-value">{{doctorId}}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">FIRST NAME</span>
+              <span class="detail-value">{{record.firstName}}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">LAST NAME</span>
+              <span class="detail-value">{{record.lastName}}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">SPECIALITY</span>
+              <span class="detail-value">{{record.speciality}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div *ngIf="error" class="error-state">
+      <i class="fa fa-exclamation-triangle"></i> {{error}}
+      <button class="retry-btn" (click)="refresh()">Retry</button>
+    </div>
+    <div *ngIf="!loading && !error" class="error-state">
+      You are not authorized to view doctor details
+    </div>
+  </ng-template>
 </div>
